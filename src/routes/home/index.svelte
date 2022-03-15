@@ -1,35 +1,33 @@
 <script>
-	import { goto } from '$app/navigation';
-
 	import { onMount } from 'svelte';
-	import { snippets, token, user } from '../../stores/stores.js';
+	import { user } from '../../stores/stores.js';
+	import { snippets, fetchAll, addSnippet } from '../../stores/snippetStore.js';
 
-	onMount(() => {
-		if ($token < Date.now()) {
-			alert('Session expired');
-			goto('/signin');
-		}
+	onMount(async () => {
+		await fetchAll();
 	});
 
-	let snippet = '';
+	let newSnippet = { content: '', description: '' };
 
-	const postSnippet = () => {
-		$snippets = [
-			...$snippets,
-			{
-				id: `${Date.now()}${Math.random()}`,
-				snippet,
-				author: $user.username,
-				created_at: Date.now()
-			}
-		];
-		snippet = '';
+	const postSnippet = async () => {
+		await addSnippet(newSnippet);
+		// snippets.update((data) => [...data, newSnippet]);
+		// $snippets = [
+		// 	...$snippets,
+		// 	{
+		// 		id: `${Date.now()}${Math.random()}`,
+		// 		snippet,
+		// 		author: $user.username,
+		// 		created_at: Date.now()
+		// 	}
+		// ];
+		newSnippet = { content: '', description: '' };
 	};
 </script>
 
 <section>
 	<div>
-		<textarea name="" id="" placeholder=" What's clacking?" bind:value={snippet} />
+		<textarea name="" id="" placeholder=" What's clacking?" bind:value={newSnippet.content} />
 		<button on:click={postSnippet}>Post</button>
 	</div>
 	<div>
@@ -38,7 +36,7 @@
 			{#each $snippets as snippet}
 				<li class="snippet">
 					<a href={`/snippets/${snippet.id}`}
-						><pre>{snippet.snippet}</pre>
+						><pre>{snippet.content}</pre>
 						<div>
 							<p>by:{snippet.author}</p>
 							<p>at:{new Date(snippet.created_at).toDateString()}</p>

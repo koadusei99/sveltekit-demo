@@ -3,6 +3,15 @@
 	margin: 0;
 	padding: 0;
 }
+body {
+	font-family: Overpass;
+}
+.link {
+	color: blue;
+}
+.h {
+	font-family: Inter;
+}
 ul {
 	list-style: none;
 }

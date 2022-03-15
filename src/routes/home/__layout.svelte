@@ -1,6 +1,15 @@
 <script>
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import { token } from '../../stores/stores.js';
 	import Sidebar from '$lib/sidebar.svelte';
-	import '../../styles/global.css';
+
+	onMount(() => {
+		if ($token < Date.now()) {
+			alert('Session expired');
+			goto('/signin');
+		}
+	});
 </script>
 
 <section>

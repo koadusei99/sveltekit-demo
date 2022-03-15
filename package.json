@@ -23,6 +23,7 @@
   "type": "module",
   "dependencies": {
     "@felte/validator-yup": "^1.0.2",
+    "@supabase/supabase-js": "^1.31.1",
     "felte": "^1.1.1",
     "yup": "^0.32.11"
   }

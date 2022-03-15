@@ -34,6 +34,8 @@
 </script>
 
 <h1>REGISTER</h1>
+<p class="link"><a href="/signin">Sign in</a></p>
+<br />
 <form use:form>
 	<div>
 		<label for="username">Username</label>

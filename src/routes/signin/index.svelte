@@ -39,7 +39,9 @@
 	});
 </script>
 
-<h1>SIgn In</h1>
+<h1>Sign In</h1>
+<p class="link"><a href="/signup">Create account</a></p>
+<br />
 <form use:form>
 	<div>
 		<label for="username">Username or Email</label>
