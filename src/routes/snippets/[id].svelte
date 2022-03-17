@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { snippets } from '../../stores/stores.js';
+	import { snippets } from '../../stores/snippetStore.js';
 
 	let snippet = {};
 
